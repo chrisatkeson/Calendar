@@ -68,7 +68,7 @@ class MyCalendar():
 # In[23]:
 
 
-# functions for actions to perform on the calculator 
+# create the calendar for use
 yearcalendar = []
 
 year = int(input('What year would you like to use for your calendar? '))
@@ -79,6 +79,7 @@ for x in range(1,13):
 
 active = True
 
+# functions for actions to perform on the calculator 
 # schedule events in the calendar
 def schedule(yearcalendar):
     scheduling = True
