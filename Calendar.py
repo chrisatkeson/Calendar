@@ -10,16 +10,30 @@ import numpy as np
 
 
 # In[17]:
-
+    
 
 days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
 months = ['','January','February','March','April','May','June','July','August','September','October','November','December']
+
+# This is a good use case for enums.  Look up python Enums and see how they are used.  
+# from enum import Enum
+
+# class Months(Enum)
+#   JANUARY = 0
+#   FEBRUARY = 1
+#   ...
+
+# class Days(Enum)
+#     SUNDAY = 0
+#     MONDAY = 1
+#     ...
 
 calendar.setfirstweekday(6)
 
 class MyCalendar():
     
-    def __init__(self,year,month): 
+    # Python3 allows type hints.  Type hints are very useful for understanding data structures.  
+    def __init__(self, year: int, month: int): 
         # initiate calendar with years
         self.year = year
         self.month = month
@@ -41,7 +55,10 @@ class MyCalendar():
         # add event to the calendar
         week, w_day = self.index_monthday(day)
         self.events[week][w_day].append(event_str)
-        
+    
+    # I assume this makes a visualization in the jupyter notebook?  Very cool.  You can embed this 
+    # jupyter notebook into your personal website actually.  Look up saving the notebook as html.
+    # It won't be interactive but they will be able to see the calendar.  
     def show(self):
         #display the calendar
         f, axs = plt.subplots(len(self.cal), 7, sharex = True, sharey = True, figsize = (20,15))
@@ -81,6 +98,13 @@ active = True
 
 # functions for actions to perform on the calculator 
 # schedule events in the calendar
+
+
+# long functions are hard to understand.  When a function gets long it is good to break out some of the logic into other functions.  Think about the 
+# different cases this function is handling and see if you can move some of the code in here into functions that handle each specific case.  There
+# is nothing wrong with small functions.  Great code often reads like pseudo codem or a list of instructions.  A function can call several other 
+# functions that abstract away the complexity.  
+
 def schedule(yearcalendar):
     scheduling = True
 
@@ -134,6 +158,8 @@ def schedule(yearcalendar):
                             else:
                                 yearcalendar[month - 1].add_event(day, event)  
                 elif freq == 'w':
+                    # This code is very similar to the code above.  See if you can generalize it and use a function that you can call 
+                    # in both places.  
                     fweek = ['s','m','t','w','th','f','sa']
                     fday = input('What day of the week would you like to schedule this event for(su,m,t,w,th,f,sa)? ')
                     numday = fweek.index(fday)
