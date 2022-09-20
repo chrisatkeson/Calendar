@@ -224,6 +224,7 @@ def browse(yearcalendar):
     for cal in yearcalendar:
         cal.show()
 
+# run logic for calendar
 while active:
     action = input('What would you like to do with your calender? Enter s for schedule, se for search, or b for browse ')
 
